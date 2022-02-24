@@ -35,3 +35,6 @@
 #compiled dist/bin
 bin
 obj
+
+#mac specific
+.DS_STORE
