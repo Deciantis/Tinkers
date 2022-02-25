@@ -15,9 +15,13 @@ namespace Bell {
 
         // allocate the qubits
         use (q1, q2) = (Qubit(), Qubit());   
+
         for test in 1..count {
             SetQubitState(initial, q1);
             SetQubitState(Zero, q2);
+
+            H(q1);
+            CNOT(q1, q2);
             
             // measure each qubit
             let resultQ1 = M(q1);            
