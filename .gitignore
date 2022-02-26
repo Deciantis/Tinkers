@@ -36,5 +36,11 @@
 bin
 obj
 
+#vscode
+.vscode
+
+#quantum
+.vs
+
 #mac specific
 .DS_STORE

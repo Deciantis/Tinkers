@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\quantum\quantum.csproj" />
+    <ProjectReference Include="/Users/deeb0ccer34/Tinkers/calculator/quantum/quantum.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
