@@ -1,0 +1,13 @@
+FROM centos/ruby-22-centos7
+
+USER root
+COPY ./secret-dir /secrets
+COPY ./config /
+
+# Create a shell script that will output secrets and ConfigMaps when the image is run
+RUN echo '#!/bin/sh' > /input_report.sh
+RUN echo '(test -f /secrets/secret1 && echo -n "secret1=" && cat /secrets/secret1)' >> /input_report.sh
+RUN echo '(test -f /config && echo -n "relative-configMap=" && cat /config)' >> /input_report.sh
+RUN chmod 755 /input_report.sh
+
+CMD ["/bin/sh", "-c", "/input_report.sh"]

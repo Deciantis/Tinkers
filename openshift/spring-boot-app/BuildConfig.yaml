@@ -1,11 +1,24 @@
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
 metadata:
-  name: openshift-gitops-operator
-  namespace: openshift-operators
+  name: spring-boot-app
+  labels:
+    name: spring-boot-app
+  annotations:
+    admission.stackrox.io/break-glass: ticket-1234
 spec:
-  channel: stable 
-  installPlanApproval: Automatic
-  name: openshift-gitops-operator 
-  source: redhat-operators 
-  sourceNamespace: openshift-marketplace 
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/codecentric/springboot-sample-app.git
+    Type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamImage
+        name: registry.access.redhat.com/ubi8/openjdk-11
+      type: Source
+  output:
+    to:
+      kind: ImageStreamTag
+      name: spring-boot-app:latest
